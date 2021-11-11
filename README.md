@@ -1,1 +1,2 @@
-# Todo-App-Client
+# Todo-App
+Todo App MERN stack
