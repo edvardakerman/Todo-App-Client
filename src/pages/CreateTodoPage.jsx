@@ -30,10 +30,8 @@ const CreateTodoPage = () => {
       method: "POST",
       body: JSON.stringify(formFields),
     };
-    const response = await fetch(url, obj);
-    if (!response.ok) {
-      throw new Error("Something went wrong!");
-    }
+    await fetch(url, obj);
+
     history.push(`/`);
   };
 
