@@ -17,19 +17,10 @@ export default function Form({ type, title }) {
 
     if (validateMessage === "validates") {
       const url = `https://t0doappli.herokuapp.com/api/users/${type}`;
-      try {
-        const { data } = await axios.post(url, formFields);
-        localStorage.setItem("tkn", data.token);
-        setUser(data.data.user);
-        history.push("/");
-      } catch (e) {
-        if (e.response.data.errorCode === 11000) {
-          setSubmitStatus({
-            requestCompleted: false,
-            message: "This email is already registered.",
-          });
-        }
-      }
+      const { data } = await axios.post(url, formFields);
+      localStorage.setItem("tkn", data.token);
+      setUser(data.data.user);
+      history.push("/");
     }
   };
 
