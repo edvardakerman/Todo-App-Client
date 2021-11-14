@@ -49,11 +49,7 @@ export default function TodoListPage() {
         authorization: `Bearer ${token}`,
       },
     };
-    const response = await fetch(url, obj);
-
-    if (!response.ok) {
-      throw new Error("Something went wrong!");
-    }
+    await fetch(url, obj);
 
     setTodos((pp) => pp.filter((p) => p._id !== itemId));
   };

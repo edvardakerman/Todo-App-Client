@@ -28,18 +28,8 @@ export default function Form({ type, title }) {
             requestCompleted: false,
             message: "This email is already registered.",
           });
-        } else {
-          setSubmitStatus({
-            requestCompleted: false,
-            message: "Something went wrong",
-          });
         }
       }
-    } else {
-      setSubmitStatus({
-        requestCompleted: false,
-        message: validateMessage,
-      });
     }
   };
 

@@ -52,11 +52,7 @@ const TodoDetailPage = () => {
         authorization: `Bearer ${token}`,
       },
     };
-    const response = await fetch(url, obj);
-
-    if (!response.ok) {
-      throw new Error("Something went wrong!");
-    }
+    await fetch(url, obj);
 
     history.push(`/`);
   };
