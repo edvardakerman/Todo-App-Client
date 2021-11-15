@@ -16,11 +16,34 @@ export default function Form({ type, title }) {
     const validateMessage = formValidateMessage(formFields, type);
 
     if (validateMessage === "validates") {
-      const url = `https://t0doappli.herokuapp.com/api/users/${type}`;
-      const { data } = await axios.post(url, formFields);
-      localStorage.setItem("tkn", data.token);
-      setUser(data.data.user);
-      history.push("/");
+      try {
+        const url = `https://t0doappli.herokuapp.com/api/users/${type}`;
+        const { data } = await axios.post(url, formFields);
+        localStorage.setItem("tkn", data.token);
+        setUser(data.data.user);
+        history.push("/");
+      } catch (e) {
+        if (e.response.data.errorCode === 500) {
+          console.log("hej");
+          history.push("/");
+        }
+        if (e.response.data.errorCode === 11000) {
+          setSubmitStatus({
+            requestCompleted: false,
+            message: "This email is already registered.",
+          });
+        } else {
+          setSubmitStatus({
+            requestCompleted: false,
+            message: "Something went wrong",
+          });
+        }
+      }
+    } else {
+      setSubmitStatus({
+        requestCompleted: false,
+        message: validateMessage,
+      });
     }
   };
 
